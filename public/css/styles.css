@@ -46,3 +46,7 @@ nav a i {
 nav a.active i {
     stroke-width: 3; /* Bold active icon */
 }
+
+.extra-space {
+    margin-top: 20px; /* Adjust as needed */
+}
