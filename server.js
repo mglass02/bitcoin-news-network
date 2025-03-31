@@ -12,8 +12,17 @@ app.use((req, res, next) => {
   next();
 });
 
+// Routes moved from router
 app.get('/', (req, res) => {
-  res.render('home');
+  res.render('home'); // Changed from 'index' to match router intent
+});
+
+app.get('/news', (req, res) => {
+  res.render('news');
+});
+
+app.get('/top-holders', (req, res) => {
+  res.render('top-holders');
 });
 
 const PORT = process.env.PORT || 10000;
