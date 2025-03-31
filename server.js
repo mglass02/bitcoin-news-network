@@ -13,8 +13,8 @@ app.use((req, res, next) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('index'); 
-  });
+  res.render('home');
+});
 
 const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => console.log(`BNN app running on port ${PORT}`));
