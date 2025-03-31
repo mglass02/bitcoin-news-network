@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNN - Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script> 
+</head>
+<body>
+    <header>
+        <h1>BNN</h1>
+    </header>
+
+    <main>
+        <h2>Welcome to Bitcoin News Network</h2>
+        <p>Stay updated with Bitcoin news and top holders.</p>
+    </main>
+
+    <nav>
+        <a href="/news" class="<%= activePage === 'news' ? 'active' : '' %>"><i data-feather="file-text"></i></a>
+        <a href="/" class="<%= activePage === 'home' ? 'active' : '' %>"><i data-feather="home"></i></a>
+        <a href="/top-holders" class="<%= activePage === 'top-holders' ? 'active' : '' %>"><i data-feather="dollar-sign"></i></a>
+    </nav>
+
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

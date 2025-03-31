@@ -1,0 +1,48 @@
+body {
+    background-color: #1a1a1a;
+    color: #f7931a;
+    font-family: "Alice", serif;
+    text-align: center;
+    margin: 0;
+}
+
+header h1 {
+    letter-spacing: 8px; /* Adjust spacing as needed */
+}
+
+header {
+    padding: 20px;
+    font-size: 24px;
+}
+
+main {
+    padding: 10px;
+}
+
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;;
+    padding: 10px;
+}
+
+nav a {
+    color: #f7931a;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+nav a i {
+    width: 24px;
+    height: 24px;
+    stroke-width: 1.5;
+}
+
+nav a.active i {
+    stroke-width: 3; /* Bold active icon */
+}
