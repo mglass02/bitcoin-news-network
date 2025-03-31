@@ -4,78 +4,33 @@ body {
     font-family: "Alice", serif;
     text-align: center;
     margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
-
-/* Header */
-header {
-    padding: 20px 0;
 }
 
 header h1 {
-    letter-spacing: 8px;
-    font-size: 28px;
-    font-weight: bold;
+    letter-spacing: 8px; /* Adjust spacing as needed */
 }
 
-/* Main Content */
-main {
+header {
     padding: 20px;
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: left;
+    font-size: 24px;
 }
 
-/* Section Titles */
-main h2 {
-    text-align: center;
-    font-size: 22px;
-    margin-bottom: 15px;
+main {
+    padding: 10px;
 }
 
-/* Paragraph Styling */
-main p {
-    margin-bottom: 12px;
-    font-size: 16px;
-}
-
-/* Donation Section */
-.donation-box {
-    background: rgba(247, 147, 26, 0.1);
-    border: 1px solid #f7931a;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 20px;
-}
-
-.donation-box p {
-    margin: 5px 0;
-    font-weight: bold;
-}
-
-.hodl-balance {
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffcc80;
-}
-
-/* Navigation Bar */
 nav {
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;
-    background-color: #121212;
-    padding: 15px 0;
-    align-items: center;
+    justify-content: space-around;;
+    padding: 10px;
 }
 
-/* Navigation Icons */
 nav a {
     color: #f7931a;
+    font-size: 24px;
     text-decoration: none;
     display: flex;
     flex-direction: column;
@@ -83,13 +38,11 @@ nav a {
 }
 
 nav a i {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     stroke-width: 1.5;
-    transition: stroke-width 0.2s ease;
 }
 
-/* Bold Active Icon */
 nav a.active i {
-    stroke-width: 3;
+    stroke-width: 3; /* Bold active icon */
 }
