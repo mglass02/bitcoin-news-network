@@ -6,17 +6,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     socket.onmessage = function (event) {
         const data = JSON.parse(event.data);
-        const price = parseFloat(data.p).toLocaleString("en-US", {
-            style: "currency",
-            currency: "USD",
-            minimumFractionDigits: 2,
-        });
+        const price = Math.round(parseFloat(data.p)).toLocaleString("en-US"); // Remove decimals
 
         // Update price and add pulse effect
-        priceElement.textContent = price;
+        priceElement.textContent = `$${price}`;
         priceElement.classList.add("pulse");
 
         // Remove pulse effect after animation
         setTimeout(() => priceElement.classList.remove("pulse"), 1000);
     };
 });
+
