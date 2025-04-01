@@ -63,3 +63,8 @@ nav a.active i {
     font-weight: bold;
     color: #ffcc80;
 }
+
+.btc-price{
+    font-size: x-large;
+    font-weight: bolder;
+}
