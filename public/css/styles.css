@@ -50,3 +50,33 @@ nav a.active i {
 .extra-space {
     margin-top: 20px; /* Adjust as needed */
 }
+
+/* Bitcoin Price Box */
+.btc-price-box {
+    background: rgba(247, 147, 26, 0.1);
+    border: 1px solid #f7931a;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ffcc80;
+}
+
+/* BTC Price Pulse Animation */
+#btc-price {
+    font-size: 22px;
+    font-weight: bold;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pulse {
+    animation: pulse-animation 1s infinite ease-in-out;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
