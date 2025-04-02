@@ -7,102 +7,45 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, 'public'), {
-  setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.css')) {
-      res.setHeader('Content-Type', 'text/css');
-    }
+app.use(express.static(path.join(__dirname, 'public')));
+app.use((req, res, next) => {
+  if (req.path === '/style.css') {
+    res.setHeader('Content-Type', 'text/css');
   }
-}));
+  next();
+});
 
+// Fetch top holders dynamically from bitcointreasuries.net
 async function fetchTopHolders() {
   try {
-    console.log('Fetching data from bitcointreasuries.net...');
-    
-    // Retry mechanism for handling rate limiting or temporary issues
-    const attemptFetch = async (retries = 3) => {
-      let response;
-      try {
-        response = await fetch('https://bitcointreasuries.net/', {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.9',
-            'Connection': 'keep-alive',
-            'Referer': 'https://bitcointreasuries.net/',
-            'Upgrade-Insecure-Requests': '1'
-          },
-          timeout: 10000
-        });
-
-        if (!response.ok) {
-          if (response.status === 403 && retries > 0) {
-            console.log('Received 403, retrying...');
-            await new Promise(res => setTimeout(res, 5000)); // wait for 5 seconds before retry
-            return attemptFetch(retries - 1); // retry
-          } else {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-          }
-        }
-        
-        return response.text();
-      } catch (error) {
-        throw error;
-      }
-    };
-
-    const html = await attemptFetch();
-    console.log('Received HTML, length:', html.length);
+    const response = await fetch('https://bitcointreasuries.net/', {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    });
+    if (!response.ok) throw new Error(`Fetch failed: ${response.status}`);
+    const html = await response.text();
     const $ = cheerio.load(html);
+
     const holders = [];
-    const rows = $('table tbody tr');
-
-    if (rows.length === 0) {
-      console.log('No table rows found in HTML');
-    } else {
-      console.log(`Found ${rows.length} table rows`);
-    }
-
-    rows.each((i, row) => {
+    $('table tbody tr').each((i, row) => {
       const cells = $(row).find('td');
-      if (cells.length < 6) {
-        console.log(`Row ${i} has insufficient cells: ${cells.length}`);
-        return;
-      }
+      const btcText = $(cells[2]).text().trim().replace(/,/g, '');
+      const btc = parseFloat(btcText);
 
-      // Log all cell contents for debugging
-      console.log(`Row ${i}: Name: ${$(cells[0]).text().trim()}, Desc: ${$(cells[1]).text().trim()}, Market Cap: ${$(cells[2]).text().trim()}, BTC: ${$(cells[3]).text().trim()}, Founded: ${$(cells[4]).text().trim()}, HQ: ${$(cells[5]).text().trim()}`);
-
-      const btcRaw = $(cells[4]).text().trim(); // Use cells[4] for BTC (Founded column)
-      let btc = 0;
-      if (btcRaw && btcRaw !== '—') {
-        const btcMatch = btcRaw.match(/₿\s*([\d,.]+)/);
-        if (btcMatch) {
-          btc = parseFloat(btcMatch[1].replace(/,/g, '')) || 0;
-        }
-      }
-
-      if (btc > 1000) {
-        const holder = {
-          name: $(cells[0]).text().trim() || 'Unknown',
+      if (btc > 1000) { // Filter for >1,000 BTC
+        holders.push({
+          name: $(cells[0]).text().trim(),
           btc: btc,
-          btcValueUsd: $(cells[3]).text().trim() || 'N/A', // Keep USD for display
-          founded: $(cells[4]).text().trim() || 'N/A',
+          founded: $(cells[4]).text().trim() || 'N/A', // Some fields may not exist
           hq: $(cells[5]).text().trim() || 'N/A',
           desc: $(cells[1]).text().trim() || 'N/A'
-        };
-        holders.push(holder);
-        console.log(`Added holder: ${holder.name} with ${holder.btc} BTC`);
-      } else {
-        console.log(`Row ${i} skipped: BTC (${btc}) <= 1,000`);
+        });
       }
     });
 
-    console.log(`Returning ${holders.length} holders with >1,000 BTC`);
-    return holders.sort((a, b) => b.btc - a.btc);
+    return holders.sort((a, b) => b.btc - a.btc); // Sort by BTC descending
   } catch (error) {
-    console.error('Error in fetchTopHolders:', error.message);
-    return [];
+    console.error('Error fetching top holders:', error);
+    return []; // Fallback to empty array
   }
 }
 

@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BNN - Top HODLers</title>
-  <link rel="stylesheet" href="/css/styles.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/feather-icons"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNN - Home</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <script defer src="/js/script.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script> 
 </head>
 <body>
-  <header>
-    <h1>BNN</h1>
-  </header>
+    <header>
+        <h1>BNN</h1>
+    </header>
 
-  <main>
-    <h2>Top HODLers</h2>
-    <p>Companies Holding >1,000 BTC (Latest Available Data)</p>
-    <% if (holders.length > 0) { %>
-      <section class="holders-list">
-        <% holders.forEach(holder => { %>
-          <div class="holder-card">
-            <h3><%= holder.name %></h3>
-            <p class="btc-amount"><%= holder.btc.toLocaleString() %> BTC</p>
-            <p><%= holder.desc %></p>
-          </div>
-        <% }); %>
-      </section>
-    <% } else { %>
-      <p>No data available at this time.</p>
-    <% } %>
-  </main>
+    <main>
+        <h2>Top HODLers</h2>
+        <p>Companies with >1000 BTC</p>
+    </main>
 
-  <nav>
-    <a href="/news"><i data-feather="file-text"></i></a>
-    <a href="/"><i data-feather="home"></i></a>
-    <a href="/top-holders"><i data-feather="dollar-sign"></i></a>
-  </nav>
+    <nav>
+        <a href="/news" class="#"><i data-feather="file-text"></i></a>
+        <a href="/" class="#"><i data-feather="home"></i></a>
+        <a href="/top-holders" class="#"><i data-feather="dollar-sign"></i></a>
+    </nav>
 
-  <script>
-    feather.replace();
-  </script>
+    <script>
+        feather.replace();
+    </script>
 </body>
 </html>
