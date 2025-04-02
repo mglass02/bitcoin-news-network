@@ -20,6 +20,7 @@ header h1 {
 /* === Main Content Styles === */
 main {
     padding: 10px;
+    margin-bottom: 60px;
 }
 
 /* === News Section Styles === */
@@ -110,6 +111,49 @@ nav a.active i {
     stroke-width: 3; /* Bold active icon */
 }
 
+/* === Top Holders Page Styles === */
+.holders-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.holder-card {
+    background: #333;
+    border-radius: 12px;
+    padding: 20px;
+    border: 2px solid #f7931a;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    text-align: left;
+}
+
+.holder-card h3 {
+    font-family: "Alice", serif;
+    font-size: clamp(18px, 3vw, 22px);
+    color: #f7931a;
+    margin: 0 0 10px;
+}
+
+.btc-amount {
+    font-weight: bold;
+    color: #ffcc80; /* Lighter orange for emphasis */
+    margin: 5px 0;
+    font-size: clamp(16px, 2.5vw, 18px);
+}
+
+.holder-card p {
+    margin: 5px 0;
+    font-size: clamp(14px, 2vw, 16px);
+    color: #ffcc80;
+}
+
+.holder-card strong {
+    color: #f7931a;
+}
+
 /* === Mobile Adjustments === */
 @media only screen and (max-width: 600px) {
     nav {
@@ -129,6 +173,15 @@ nav a.active i {
 
     main {
         margin-bottom: 60px; /* Push content up on mobile to avoid nav overlap */
+    }
+
+    .holders-list {
+        grid-template-columns: 1fr; /* Single column on mobile */
+        padding: 10px;
+    }
+
+    .holder-card {
+        padding: 15px;
     }
 }
 
@@ -156,5 +209,5 @@ nav a.active i {
 
 .btc-price {
     font-size: x-large;
-    font-weight: bolder23;
+    font-weight: bolder;
 }
