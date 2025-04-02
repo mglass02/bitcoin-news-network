@@ -28,6 +28,7 @@
     </nav>
     <script>
         feather.replace();
+    
         async function fetchNews(query, elementId) {
             try {
                 const response = await fetch(`/api/news?q=${query}`);
@@ -44,8 +45,17 @@
                 document.getElementById(elementId).innerHTML = "<li>Failed to load news</li>";
             }
         }
+    
+        // Initial fetch
         fetchNews("bitcoin+legislation", "legislation-news");
         fetchNews("bitcoin+institutional+investment", "institutional-news");
+    
+        // Auto-update every 5 minutes
+        setInterval(() => {
+            fetchNews("bitcoin+legislation", "legislation-news");
+            fetchNews("bitcoin+institutional+investment", "institutional-news");
+            console.log("News refreshed at:", new Date().toLocaleTimeString());
+        }, 300000); // 300,000 ms = 5 minutes
     </script>
 </body>
 </html>
