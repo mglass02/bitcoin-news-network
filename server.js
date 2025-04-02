@@ -18,19 +18,40 @@ app.use(express.static(path.join(__dirname, 'public'), {
 async function fetchTopHolders() {
   try {
     console.log('Fetching data from bitcointreasuries.net...');
-    const response = await fetch('https://bitcointreasuries.net/', {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8'
-      },
-      timeout: 10000
-    });
+    
+    // Retry mechanism for handling rate limiting or temporary issues
+    const attemptFetch = async (retries = 3) => {
+      let response;
+      try {
+        response = await fetch('https://bitcointreasuries.net/', {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Connection': 'keep-alive',
+            'Referer': 'https://bitcointreasuries.net/',
+            'Upgrade-Insecure-Requests': '1'
+          },
+          timeout: 10000
+        });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
+        if (!response.ok) {
+          if (response.status === 403 && retries > 0) {
+            console.log('Received 403, retrying...');
+            await new Promise(res => setTimeout(res, 5000)); // wait for 5 seconds before retry
+            return attemptFetch(retries - 1); // retry
+          } else {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+        }
+        
+        return response.text();
+      } catch (error) {
+        throw error;
+      }
+    };
 
-    const html = await response.text();
+    const html = await attemptFetch();
     console.log('Received HTML, length:', html.length);
     const $ = cheerio.load(html);
     const holders = [];
