@@ -1,5 +1,5 @@
 body {
-    background-color: #1a1a1a;
+    background-color: #222;
     color: #f7931a;
     font-family: "Alice", serif;
     text-align: center;
@@ -19,13 +19,71 @@ main {
     padding: 10px;
 }
 
+/* News section styles unchanged */
+.news-section {
+    margin: 20px auto;
+    padding: 15px;
+    background: #222;
+    border-radius: 12px;
+    border: 2px solid #f7931a;
+    max-width: 800px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.news-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #f7931a #333;
+}
+
+.news-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.news-list::-webkit-scrollbar-track {
+    background: #333;
+    border-radius: 10px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background: #f7931a;
+    border-radius: 10px;
+}
+
+.news-list::-webkit-scrollbar-thumb:hover {
+    background: #ffaa33;
+}
+
+.news-list li {
+    margin: 10px 0;
+    padding: 12px;
+    background: #333;
+    border-radius: 10px;
+}
+
+.news-list a {
+    color: #f7931a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-list a:hover {
+    text-decoration: underline;
+}
+
+/* Nav bar sits on top */
 nav {
     position: fixed;
     bottom: 0;
     width: 100%;
     display: flex;
-    justify-content: space-around;;
+    justify-content: space-around;
     padding: 10px;
+    background: #222; /* Solid background so content doesn’t bleed through */
+    z-index: 10; /* Higher than main content (default is 0) */
 }
 
 nav a {
@@ -44,7 +102,7 @@ nav a i {
 }
 
 nav a.active i {
-    stroke-width: 3; /* Bold active icon */
+    stroke-width: 3;
 }
 
 .extra-space {
@@ -70,7 +128,7 @@ nav a.active i {
 }
 
 body {
-    background-color: #1a1a1a;
+    background-color: #222;
     color: #f7931a;
     font-family: "Alice", serif;
     text-align: center;
