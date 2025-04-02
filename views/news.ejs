@@ -1,32 +1,51 @@
+<!-- views/news.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNN - Home</title>
+    <title>BNN - Bitcoin News</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <script defer src="/js/script.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script> 
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-    <header>
-        <h1>BNN</h1>
-    </header>
-
+    <header><h1>BNN</h1></header>
     <main>
-        <h2>BTC news all in one place</h2>
+        <h2>Bitcoin News</h2>
+        <section class="news-section">
+            <h3>Bitcoin Legislation</h3>
+            <ul id="legislation-news" class="news-list"></ul>
+        </section>
+        <section class="news-section">
+            <h3>Institutional Bitcoin Adoption</h3>
+            <ul id="institutional-news" class="news-list"></ul>
+        </section>
     </main>
-
     <nav>
-        <a href="/news" class="#"><i data-feather="file-text"></i></a>
-        <a href="/" class="#"><i data-feather="home"></i></a>
-        <a href="/top-holders" class="#"><i data-feather="dollar-sign"></i></a>
+        <a href="/news"><i data-feather="file-text"></i></a>
+        <a href="/"><i data-feather="home"></i></a>
+        <a href="/top-holders"><i data-feather="dollar-sign"></i></a>
     </nav>
-
     <script>
         feather.replace();
+        async function fetchNews(query, elementId) {
+            try {
+                const response = await fetch(`/api/news?q=${query}`);
+                const items = await response.json();
+                const newsList = document.getElementById(elementId);
+                newsList.innerHTML = "";
+                items.forEach(item => {
+                    const listItem = document.createElement("li");
+                    listItem.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+                    newsList.appendChild(listItem);
+                });
+            } catch (error) {
+                console.error("Failed to fetch news:", error);
+                document.getElementById(elementId).innerHTML = "<li>Failed to load news</li>";
+            }
+        }
+        fetchNews("bitcoin+legislation", "legislation-news");
+        fetchNews("bitcoin+institutional+investment", "institutional-news");
     </script>
 </body>
 </html>

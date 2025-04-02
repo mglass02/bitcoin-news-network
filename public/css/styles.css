@@ -68,3 +68,52 @@ nav a.active i {
     font-size: x-large;
     font-weight: bolder;
 }
+
+body {
+    background-color: #1a1a1a;
+    color: #f7931a;
+    font-family: "Alice", serif;
+    text-align: center;
+    margin: 0;
+}
+
+header {
+    padding: 20px;
+    font-size: 24px;
+    letter-spacing: 5px;
+}
+
+.news-section {
+    margin: 20px auto;
+    padding: 15px;
+    background: #222;
+    border-radius: 12px;
+    max-width: 800px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.news-list {
+    list-style-type: none;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+}
+
+.news-list li {
+    margin: 10px 0;
+    padding: 12px;
+    background: #333;
+    border-radius: 10px;
+}
+
+.news-list a {
+    color: #f7931a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-list a:hover {
+    text-decoration: underline;
+}
+
