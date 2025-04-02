@@ -1,3 +1,4 @@
+/* === General Styles === */
 body {
     background-color: #222;
     color: #f7931a;
@@ -6,20 +7,22 @@ body {
     margin: 0;
 }
 
-header h1 {
-    letter-spacing: 8px; /* Adjust spacing as needed */
-}
-
+/* === Header Styles === */
 header {
     padding: 20px;
     font-size: 24px;
 }
 
+header h1 {
+    letter-spacing: 8px; /* Wider spacing from first version */
+}
+
+/* === Main Content Styles === */
 main {
     padding: 10px;
 }
 
-/* News section styles unchanged */
+/* === News Section Styles === */
 .news-section {
     margin: 20px auto;
     padding: 15px;
@@ -35,26 +38,26 @@ main {
     padding: 0;
     max-height: 150px;
     overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: #f7931a #333;
+    scrollbar-width: thin; /* Firefox: Slim scrollbar */
+    scrollbar-color: #f7931a #333; /* Firefox: Orange thumb, dark track */
 }
 
 .news-list::-webkit-scrollbar {
-    width: 8px;
+    width: 8px; /* Webkit: Slimmer scrollbar */
 }
 
 .news-list::-webkit-scrollbar-track {
-    background: #333;
-    border-radius: 10px;
+    background: #333; /* Matches li background */
+    border-radius: 10px; /* Rounded edges */
 }
 
 .news-list::-webkit-scrollbar-thumb {
-    background: #f7931a;
-    border-radius: 10px;
+    background: #f7931a; /* Orange to match border */
+    border-radius: 10px; /* Smooth look */
 }
 
 .news-list::-webkit-scrollbar-thumb:hover {
-    background: #ffaa33;
+    background: #ffaa33; /* Lighter orange on hover */
 }
 
 .news-list li {
@@ -74,16 +77,18 @@ main {
     text-decoration: underline;
 }
 
-/* Nav bar sits on top */
+/* === Navigation Bar Styles === */
 nav {
     position: fixed;
     bottom: 0;
+    left: 0; /* Full width with explicit edges */
+    right: 0;
     width: 100%;
     display: flex;
     justify-content: space-around;
     padding: 10px;
-    background: #222; /* Solid background so content doesn’t bleed through */
-    z-index: 10; /* Higher than main content (default is 0) */
+    background: #222; /* Solid background to overlay content */
+    z-index: 10; /* Stays above main content */
 }
 
 nav a {
@@ -102,14 +107,37 @@ nav a i {
 }
 
 nav a.active i {
-    stroke-width: 3;
+    stroke-width: 3; /* Bold active icon */
 }
 
+/* === Mobile Adjustments === */
+@media only screen and (max-width: 600px) {
+    nav {
+        padding: 8px; /* Smaller padding for mobile */
+        background: #222; /* Reinforce solid background */
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); /* Lift effect */
+    }
+
+    nav a {
+        font-size: 20px; /* Smaller icons on mobile */
+    }
+
+    nav a i {
+        width: 20px;
+        height: 20px;
+    }
+
+    main {
+        margin-bottom: 60px; /* Push content up on mobile to avoid nav overlap */
+    }
+}
+
+/* === Miscellaneous Styles === */
 .extra-space {
-    margin-top: 20px; /* Adjust as needed */
+    margin-top: 20px; /* Spacer class */
 }
 
-/* Bitcoin Price Box */
+/* === Bitcoin Price Box Styles === */
 .btc-price-box {
     background: rgba(247, 147, 26, 0.1);
     border: 1px solid #f7931a;
@@ -122,77 +150,7 @@ nav a.active i {
     color: #ffcc80;
 }
 
-.btc-price{
+.btc-price {
     font-size: x-large;
-    font-weight: bolder;
+    font-weight: bolder23;
 }
-
-body {
-    background-color: #222;
-    color: #f7931a;
-    font-family: "Alice", serif;
-    text-align: center;
-    margin: 0;
-}
-
-header {
-    padding: 20px;
-    font-size: 24px;
-    letter-spacing: 5px;
-}
-
-.news-section {
-    margin: 20px auto;
-    padding: 15px;
-    background: #222;
-    border-radius: 12px;
-    border: 2px solid #f7931a;
-    max-width: 800px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.news-list {
-    list-style-type: none;
-    padding: 0;
-    max-height: 150px;
-    overflow-y: auto;
-    scrollbar-width: thin; /* Firefox: Keeps it slim */
-    scrollbar-color: #f7931a #333; /* Firefox: Orange thumb, dark track */
-}
-
-/* Webkit (Chrome, Safari, Edge) scrollbar styling */
-.news-list::-webkit-scrollbar {
-    width: 8px; /* Slimmer than default */
-}
-
-.news-list::-webkit-scrollbar-track {
-    background: #333; /* Matches the li background */
-    border-radius: 10px; /* Rounded edges */
-}
-
-.news-list::-webkit-scrollbar-thumb {
-    background: #f7931a; /* Orange to tie in with the border */
-    border-radius: 10px; /* Smooth, pill-like look */
-}
-
-.news-list::-webkit-scrollbar-thumb:hover {
-    background: #ffaa33; /* Slightly lighter orange on hover for feedback */
-}
-
-.news-list li {
-    margin: 10px 0;
-    padding: 12px;
-    background: #333;
-    border-radius: 10px;
-}
-
-.news-list a {
-    color: #f7931a;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.news-list a:hover {
-    text-decoration: underline;
-}
-
