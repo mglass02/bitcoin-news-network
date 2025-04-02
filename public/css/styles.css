@@ -137,6 +137,10 @@ nav a.active i {
     margin-top: 20px; /* Spacer class */
 }
 
+.xx-space {
+    margin-top: 40px; /* Spacer class */
+}
+
 /* === Bitcoin Price Box Styles === */
 .btc-price-box {
     background: rgba(247, 147, 26, 0.1);
