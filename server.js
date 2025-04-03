@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const cheerio = require('cheerio');
 const cron = require('node-cron'); // Add node-cron for scheduling
 const app = express();
+const { parseString } = require('xml2js');
 
 let topHoldersCache = []; // Variable to hold the cached data
 
@@ -44,9 +45,6 @@ async function fetchTopHolders() {
         });
       }
     });
-
-    // Log the cleaned holders data for analysis
-    console.log('Cleaned data (Filtered):', holders);
 
     return holders.sort((a, b) => b.btc - a.btc); // Sort by BTC descending
   } catch (error) {
