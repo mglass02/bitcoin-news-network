@@ -32,7 +32,12 @@ async function fetchTopHolders() {
 
       // Clean and extract the company name (remove emojis or symbols)
       let name = $(cells[0]).text().trim();
-      name = name.replace(/[^\w\s]/g, '');  // Remove non-word characters like emojis and symbols
+      
+      // Remove words like "Update" and "Auto" and any extra spaces
+      name = name.replace(/^(Update|Auto)\s+/i, '').trim();  // Remove leading 'Update' or 'Auto'
+
+      // Remove non-word characters like emojis and symbols
+      name = name.replace(/[^\w\s]/g, '').trim();
 
       // Only add to the list if the BTC amount is greater than 1000 and the name is valid
       if (btc && btc > 1000 && name) {
