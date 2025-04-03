@@ -1,19 +1,15 @@
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
-const { parseString } = require('xml2js');
 const cheerio = require('cheerio');
+const cron = require('node-cron'); // Add node-cron for scheduling
 const app = express();
+
+let topHoldersCache = []; // Variable to hold the cached data
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use((req, res, next) => {
-  if (req.path === '/style.css') {
-    res.setHeader('Content-Type', 'text/css');
-  }
-  next();
-});
 
 // Fetch top holders dynamically from bitcointreasuries.net
 async function fetchTopHolders() {
@@ -28,25 +24,51 @@ async function fetchTopHolders() {
     const holders = [];
     $('table tbody tr').each((i, row) => {
       const cells = $(row).find('td');
-      const btcText = $(cells[2]).text().trim().replace(/,/g, '');
-      const btc = parseFloat(btcText);
+      
+      // Extract the BTC amount from the 'founded' column (as seen in the data)
+      const btcText = $(cells[4]).text().trim().replace(/,/g, '');  // BTC is now in the 'founded' column
+      const btc = parseFloat(btcText.replace('₿', '').trim());
 
-      if (btc > 1000) { // Filter for >1,000 BTC
+      // Clean and extract the company name (remove emojis or symbols)
+      let name = $(cells[0]).text().trim();
+      name = name.replace(/[^\w\s]/g, '');  // Remove non-word characters like emojis and symbols
+
+      // Only add to the list if the BTC amount is greater than 1000 and the name is valid
+      if (btc && btc > 1000 && name) {
         holders.push({
-          name: $(cells[0]).text().trim(),
+          name: name,
           btc: btc,
-          founded: $(cells[4]).text().trim() || 'N/A', // Some fields may not exist
-          hq: $(cells[5]).text().trim() || 'N/A',
-          desc: $(cells[1]).text().trim() || 'N/A'
+          founded: $(cells[4]).text().trim() || 'N/A',  // Keeping the 'founded' column value for reference
+          hq: $(cells[5]).text().trim() || 'N/A',  // 'hq' is still in its original column
+          desc: $(cells[1]).text().trim() || 'N/A'  // Description is still from its original column
         });
       }
     });
+
+    // Log the cleaned holders data for analysis
+    console.log('Cleaned data (Filtered):', holders);
 
     return holders.sort((a, b) => b.btc - a.btc); // Sort by BTC descending
   } catch (error) {
     console.error('Error fetching top holders:', error);
     return []; // Fallback to empty array
   }
+}
+
+
+// Schedule a task to scrape data every 12 hours
+cron.schedule('0 0 */12 * *', async () => {
+  console.log('Scraping top holders...');
+  topHoldersCache = await fetchTopHolders();
+  console.log('Top holders data updated!');
+});
+
+// Fetch data for the top holders (use the cache to avoid fetching too often)
+async function getTopHolders() {
+  if (topHoldersCache.length === 0) { // If cache is empty, fetch new data
+    topHoldersCache = await fetchTopHolders();
+  }
+  return topHoldersCache;
 }
 
 // Routes
@@ -59,7 +81,7 @@ app.get('/news', (req, res) => {
 });
 
 app.get('/top-holders', async (req, res) => {
-  const holders = await fetchTopHolders();
+  const holders = await getTopHolders(); // Use the cached data
   res.render('top-holders', { holders });
 });
 
@@ -85,8 +107,8 @@ app.get('/api/news', async (req, res) => {
 });
 
 app.get('/api/top-holders', async (req, res) => {
-  const holders = await fetchTopHolders();
-  res.json(holders);
+  const holders = await getTopHolders();
+  res.json(holders); // Return the raw data in JSON format
 });
 
 const PORT = process.env.PORT || 10000;

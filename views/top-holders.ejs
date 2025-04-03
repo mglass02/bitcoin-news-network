@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNN - Home</title>
+    <title>BNN - Top HODLers</title>
     <link rel="stylesheet" href="/css/styles.css">
     <script defer src="/js/script.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,9 +17,21 @@
 
     <main>
         <h2>Top HODLers</h2>
-        <p>Companies with >1000 BTC</p>
+        <p>Companies holding more than 1000 BTC</p>
+
+        <!-- Grid to display the top holders -->
+        <div class="holders-list">
+            <!-- Loop through the holders array passed from the server -->
+            <% holders.forEach(function(holder) { %>
+                <div class="holder-card">
+                    <h3><%= holder.name %></h3>
+                    <p><strong>Total BTC:</strong> <span class="btc-amount"><%= holder.founded %></span></p>
+                </div>
+            <% }) %>
+        </div>
     </main>
 
+    <!-- Navigation -->
     <nav>
         <a href="/news" class="#"><i data-feather="file-text"></i></a>
         <a href="/" class="#"><i data-feather="home"></i></a>
