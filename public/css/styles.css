@@ -178,6 +178,7 @@ nav a.active i {
     .holders-list {
         grid-template-columns: 1fr; /* Single column on mobile */
         padding: 10px;
+        text-align: center;
     }
 
     .holder-card {
