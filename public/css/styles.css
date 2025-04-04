@@ -212,3 +212,38 @@ nav a.active i {
     font-size: x-large;
     font-weight: bolder;
 }
+
+/* === Home Redesign: Hero Section === */
+
+.bnn-logo {
+    font-size: 48px;
+    letter-spacing: 10px;
+    font-weight: bold;
+    color: #f7931a;
+}
+
+.welcome-text {
+    font-size: 22px;
+    color: #f7931a;
+    margin: 40px 0 50px;
+}
+
+/* BTC Price Enhanced Container */
+.btc-price-container {
+    display: inline-block;
+    padding: 30px 40px;
+}
+
+.btc-price-label {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #f7931a;
+    letter-spacing: 1px;
+}
+
+.btc-price-display {
+    font-size: 42px;
+    font-weight: bold;
+    color: #f7931a;
+    letter-spacing: 2px;
+}
