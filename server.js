@@ -84,7 +84,13 @@ app.get('/news', (req, res) => {
 });
 
 app.get('/top-holders', async (req, res) => {
-  const holders = await getTopHolders(); // Use the cached data
+  let holders = topHoldersCache;
+
+  // If cache is empty, fetch the top holders immediately before rendering
+  if (holders.length === 0) {
+    holders = await fetchTopHolders();
+  }
+
   res.render('top-holders', { holders });
 });
 
