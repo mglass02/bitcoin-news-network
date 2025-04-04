@@ -235,7 +235,7 @@ nav a.active i {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh; /* Centers it vertically */
+    min-height: 50vh; /* Keeps price centered vertically */
     padding: 30px 40px;
 }
 
@@ -251,5 +251,25 @@ nav a.active i {
     font-weight: bold;
     color: #f7931a;
     letter-spacing: 2px;
+}
+
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .bnn-logo {
+        font-size: 36px;
+        letter-spacing: 5px;
+    }
+
+    .welcome-text {
+        font-size: 18px;
+    }
+
+    .btc-price-container {
+        min-height: 60vh; /* Keeps it centered on smaller screens */
+    }
+
+    .btc-price-display {
+        font-size: 36px; /* Slightly smaller on mobile */
+    }
 }
 
