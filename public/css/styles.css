@@ -220,17 +220,22 @@ nav a.active i {
     letter-spacing: 10px;
     font-weight: bold;
     color: #f7931a;
+    margin-bottom: 5px; /* Reduce space below the logo */
 }
 
 .welcome-text {
     font-size: 22px;
     color: #f7931a;
-    margin: 40px 0 50px;
+    margin-top: 0; /* Remove extra space above the text */
 }
 
 /* BTC Price Enhanced Container */
 .btc-price-container {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Centers it vertically */
     padding: 30px 40px;
 }
 
@@ -247,3 +252,4 @@ nav a.active i {
     color: #f7931a;
     letter-spacing: 2px;
 }
+
