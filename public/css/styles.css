@@ -376,7 +376,6 @@ nav a.active i {
     }
 }
 
-/* styles.css */
 /* General container for the chart */
 .chart-container {
     display: flex;
@@ -384,8 +383,8 @@ nav a.active i {
     gap: 20px;
     padding: 20px;
     margin: 0 auto;
-    width: 100%;  /* Make sure it uses the available width */
-    max-width: 100%;  /* Prevent container from exceeding the screen width */
+    width: 100%;
+    max-width: 100%;
 }
 
 /* Style for the pie chart */
@@ -395,24 +394,42 @@ nav a.active i {
     padding: 15px;
     border: 1px solid #444;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    height: 300px; /* Keep height fixed but responsive */
-    width: 100%;  /* Make sure it adapts to the screen */
-    max-width: 100%; /* Prevent the chart from becoming too wide */
-    margin: 0 auto; /* Centers the chart horizontally */
+    height: 300px;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Style for the list of companies on the side */
+.company-list {
+    background: #222;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    max-height: 300px;  /* Limit the height to avoid stretching */
+    overflow-y: auto;  /* Make the list scrollable */
 }
 
 /* Ensure the chart is fully responsive on mobile */
 @media (max-width: 767px) {
     .chart-container {
-        padding: 15px; /* Reduce padding for smaller screens */
+        padding: 15px;
     }
 
     #pieChart {
         height: 250px; /* Adjust the height slightly for smaller screens */
     }
 
+    /* Center the companies list and make it scrollable */
+    .company-list {
+        height: auto;
+        max-height: 250px;  /* Ensure it doesn't overflow */
+        overflow-y: scroll;
+    }
+
     .view-toggle-switch {
-        margin-bottom: 15px; /* Reduce margin for toggle on mobile */
+        margin-bottom: 15px;
     }
 }
 
@@ -425,7 +442,13 @@ nav a.active i {
 
     #pieChart {
         width: 48%;  /* Set width for larger screens to avoid stretching */
-        height: 300px; /* Keep the height consistent */
+        height: 300px;
+    }
+
+    .company-list {
+        width: 48%;  /* Keep the list width in balance with the chart */
+        max-height: 300px;  /* Keep the list height consistent */
+        overflow-y: auto;
     }
 }
 
