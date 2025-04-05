@@ -375,3 +375,113 @@ nav a.active i {
         min-height: 40vh;
     }
 }
+
+/* styles.css */
+/* General container for the chart */
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    width: 100%;  /* Make sure it uses the available width */
+    max-width: 100%;  /* Prevent container from exceeding the screen width */
+}
+
+/* Style for the pie chart */
+#pieChart {
+    background: #222;
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    height: 300px; /* Keep height fixed but responsive */
+    width: 100%;  /* Make sure it adapts to the screen */
+    max-width: 100%; /* Prevent the chart from becoming too wide */
+    margin: 0 auto; /* Centers the chart horizontally */
+}
+
+/* Ensure the chart is fully responsive on mobile */
+@media (max-width: 767px) {
+    .chart-container {
+        padding: 15px; /* Reduce padding for smaller screens */
+    }
+
+    #pieChart {
+        height: 250px; /* Adjust the height slightly for smaller screens */
+    }
+
+    .view-toggle-switch {
+        margin-bottom: 15px; /* Reduce margin for toggle on mobile */
+    }
+}
+
+/* Media Query for Larger Screens (Tablets and above) */
+@media (min-width: 768px) {
+    .chart-container {
+        flex-direction: row; /* Layout for larger screens */
+        justify-content: space-between;
+    }
+
+    #pieChart {
+        width: 48%;  /* Set width for larger screens to avoid stretching */
+        height: 300px; /* Keep the height consistent */
+    }
+}
+
+
+.view-toggle-switch {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 2rem 0;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-weight: 500;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #f7931a;
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
