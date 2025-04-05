@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BNN - Top HODLers</title>
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Alice&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script> 
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
     <header>
-        <h1>BNN</h1>
+        <div class="header-container">
+            <h1 class="bnn-logo">BNN</h1>
+            <p class="tagline">Your Trusted Source for Bitcoin News</p>
+            <a href="/subscribe" class="subscribe-btn">Subscribe for £1.99/month</a>
+        </div>
     </header>
-
     <main>
-        <h2>Top HODLers</h2>
-
-        <!-- Grid to display the top holders -->
+        <section class="intro-section">
+            <h2>Top HODLers</h2>
+            <p>Discover the biggest Bitcoin holders in the market.</p>
+        </section>
         <div class="holders-list">
             <% holders.forEach(function(holder) { %>
                 <div class="holder-card">
@@ -27,14 +30,11 @@
             <% }) %>
         </div>
     </main>
-
-    <!-- Navigation -->
     <nav>
-        <a href="/news" class="#"><i data-feather="file-text"></i></a>
-        <a href="/" class="#"><i data-feather="home"></i></a>
-        <a href="/top-holders" class="#"><i data-feather="dollar-sign"></i></a>
+        <a href="/news"><i data-feather="file-text"></i><span>News</span></a>
+        <a href="/"><i data-feather="home"></i><span>Home</span></a>
+        <a href="/top-holders" class="active"><i data-feather="dollar-sign"></i><span>HODLers</span></a>
     </nav>
-
     <script>
         feather.replace();
     </script>

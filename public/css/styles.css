@@ -1,242 +1,240 @@
-/* === General Styles === */
-body {
-    background-color: #222;
-    color: #f7931a;
-    font-family: "Alice", serif;
-    text-align: center;
+/* === Reset and General Styles === */
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    font-family: "Roboto", sans-serif;
+    text-align: center;
+    line-height: 1.6;
 }
 
 /* === Header Styles === */
 header {
+    background: linear-gradient(180deg, #222, #1a1a1a); /* Subtle gradient for premium feel */
     padding: 20px;
-    font-size: 24px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
-header h1 {
-    letter-spacing: 8px; /* Wider spacing from first version */
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bnn-logo {
+    font-family: "Playfair Display", serif;
+    font-size: 48px;
+    letter-spacing: 5px;
+    color: #f7931a;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+.tagline {
+    font-size: 16px;
+    color: #ccc;
+    margin: 5px 0 15px;
+}
+
+.subscribe-btn {
+    display: inline-block;
+    background: #f7931a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px; /* Rounded for a premium look */
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.subscribe-btn:hover {
+    background: #ffaa33;
+    transform: translateY(-2px);
 }
 
 /* === Main Content Styles === */
 main {
-    padding: 10px;
-    margin-bottom: 60px;
+    padding: 20px;
+    margin-bottom: 80px; /* Space for bottom nav */
+}
+
+.intro-section {
+    margin-bottom: 30px;
+}
+
+.intro-section h2, .welcome-text {
+    font-family: "Playfair Display", serif;
+    font-size: 36px;
+    color: #f7931a;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.intro-section p {
+    font-size: 18px;
+    color: #ccc;
 }
 
 /* === News Section Styles === */
 .news-section {
-    margin: 20px auto;
-    padding: 15px;
+    margin: 40px auto;
+    padding: 20px;
     background: #222;
-    border-radius: 12px;
-    border: 2px solid #f7931a;
+    border-radius: 10px;
+    border: 1px solid #444;
     max-width: 800px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.news-section:hover {
+    transform: translateY(-3px);
+}
+
+.news-section h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    color: #f7931a;
+    margin-bottom: 20px;
 }
 
 .news-list {
     list-style-type: none;
     padding: 0;
-    max-height: 150px;
+    max-height: 400px;
     overflow-y: auto;
-    scrollbar-width: thin; /* Firefox: Slim scrollbar */
-    scrollbar-color: #f7931a #333; /* Firefox: Orange thumb, dark track */
+    scrollbar-width: thin;
+    scrollbar-color: #f7931a #333;
 }
 
 .news-list::-webkit-scrollbar {
-    width: 8px; /* Webkit: Slimmer scrollbar */
+    width: 8px;
 }
 
 .news-list::-webkit-scrollbar-track {
-    background: #333; /* Matches li background */
-    border-radius: 10px; /* Rounded edges */
-}
-
-.news-list::-webkit-scrollbar-thumb {
-    background: #f7931a; /* Orange to match border */
-    border-radius: 10px; /* Smooth look */
-}
-
-.news-list::-webkit-scrollbar-thumb:hover {
-    background: #ffaa33; /* Lighter orange on hover */
-}
-
-.news-list li {
-    margin: 10px 0;
-    padding: 12px;
     background: #333;
     border-radius: 10px;
 }
 
-.news-list a {
-    color: #f7931a;
-    text-decoration: none;
-    font-weight: bold;
+.news-list::-webkit-scrollbar-thumb {
+    background: #f7931a;
+    border-radius: 10px;
 }
 
-.news-list a:hover {
+.news-list::-webkit-scrollbar-thumb:hover {
+    background: #ffaa33;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    margin: 15px 0;
+    padding: 15px;
+    background: #333;
+    border-radius: 8px;
+    transition: background 0.3s;
+}
+
+.news-item:hover {
+    background: #3a3a3a;
+}
+
+.news-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.news-content {
+    text-align: left;
+}
+
+.news-content a {
+    color: #f7931a;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 18px;
+}
+
+.news-content a:hover {
     text-decoration: underline;
 }
 
-/* === Navigation Bar Styles === */
-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0; /* Full width with explicit edges */
-    right: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-    background: #222; /* Solid background to overlay content */
-    z-index: 10; /* Stays above main content */
-}
-
-nav a {
-    color: #f7931a;
-    font-size: 24px;
-    text-decoration: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-nav a i {
-    width: 24px;
-    height: 24px;
-    stroke-width: 1.5;
-}
-
-nav a.active i {
-    stroke-width: 3; /* Bold active icon */
+.subscribe-teaser {
+    font-size: 14px;
+    color: #ccc;
+    margin-top: 5px;
 }
 
 /* === Top Holders Page Styles === */
 .holders-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: 1fr; /* Single column for mobile-first */
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
 .holder-card {
-    background: #333;
-    border-radius: 12px;
+    background: #222;
+    border-radius: 10px;
     padding: 20px;
-    border: 2px solid #f7931a;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    border: 1px solid #444;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s;
+}
+
+.holder-card:hover {
+    transform: translateY(-3px);
 }
 
 .holder-card h3 {
-    font-family: "Alice", serif;
-    font-size: clamp(18px, 3vw, 22px);
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
     color: #f7931a;
     margin: 0 0 10px;
 }
 
 .btc-amount {
     font-weight: bold;
-    color: #ffcc80; /* Lighter orange for emphasis */
+    color: #ffcc80;
     margin: 5px 0;
-    font-size: clamp(16px, 2.5vw, 18px);
+    font-size: 18px;
 }
 
 .holder-card p {
     margin: 5px 0;
-    font-size: clamp(14px, 2vw, 16px);
-    color: #ffcc80;
+    font-size: 16px;
+    color: #ccc;
 }
 
 .holder-card strong {
     color: #f7931a;
 }
 
-/* === Mobile Adjustments === */
-@media only screen and (max-width: 600px) {
-    nav {
-        padding: 8px; /* Smaller padding for mobile */
-        background: #222; /* Reinforce solid background */
-        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3); /* Lift effect */
-    }
-
-    nav a {
-        font-size: 20px; /* Smaller icons on mobile */
-    }
-
-    nav a i {
-        width: 20px;
-        height: 20px;
-    }
-
-    main {
-        margin-bottom: 60px; /* Push content up on mobile to avoid nav overlap */
-    }
-
-    .holders-list {
-        grid-template-columns: 1fr; /* Single column on mobile */
-        padding: 10px;
-    }
-
-    .holder-card {
-        padding: 15px;
-        text-align: center;
-    }
-}
-
-/* === Miscellaneous Styles === */
-.extra-space {
-    margin-top: 20px; /* Spacer class */
-}
-
-.xx-space {
-    margin-top: 40px; /* Spacer class */
-}
-
-/* === Bitcoin Price Box Styles === */
-.btc-price-box {
-    background: rgba(247, 147, 26, 0.1);
-    border: 1px solid #f7931a;
-    padding: 15px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 18px;
-    font-weight: bold;
-    color: #ffcc80;
-}
-
-.btc-price {
-    font-size: x-large;
-    font-weight: bolder;
-}
-
-/* === Home Redesign: Hero Section === */
-
-.bnn-logo {
-    font-size: 48px;
-    letter-spacing: 10px;
-    font-weight: bold;
-    color: #f7931a;
-    margin-bottom: 5px; /* Reduce space below the logo */
-}
-
-.welcome-text {
-    font-size: 22px;
-    color: #f7931a;
-    margin-top: 0; /* Remove extra space above the text */
-}
-
-/* BTC Price Enhanced Container */
+/* === Home Page Styles === */
 .btc-price-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    min-height: 50vh; /* Keeps price centered vertically */
+    min-height: 50vh;
     padding: 30px 40px;
+    background: #222;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    margin: 20px auto;
+    max-width: 800px;
 }
 
 .btc-price-label {
@@ -251,25 +249,129 @@ nav a.active i {
     font-weight: bold;
     color: #f7931a;
     letter-spacing: 2px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design for Mobile */
-@media (max-width: 768px) {
+/* === Navigation Bar Styles === */
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    background: #222;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.6);
+    border-top: 1px solid #444;
+    z-index: 10;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+nav a {
+    color: #f7931a;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 10px;
+    transition: background 0.3s, transform 0.2s;
+}
+
+nav a:hover {
+    background: #333;
+    transform: translateY(-2px);
+}
+
+nav a i {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 5px;
+    stroke-width: 1.5;
+}
+
+nav a.active {
+    background: #f7931a;
+    color: #fff;
+}
+
+nav a.active i {
+    stroke: #fff;
+    stroke-width: 2;
+}
+
+/* === Miscellaneous Styles === */
+.xx-space {
+    margin-top: 40px;
+}
+
+/* === Mobile Adjustments === */
+@media only screen and (max-width: 600px) {
     .bnn-logo {
         font-size: 36px;
-        letter-spacing: 5px;
+        letter-spacing: 3px;
     }
 
-    .welcome-text {
-        font-size: 18px;
+    .tagline {
+        font-size: 14px;
+    }
+
+    .subscribe-btn {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    .intro-section h2, .welcome-text {
+        font-size: 28px;
+    }
+
+    .news-section h3 {
+        font-size: 24px;
+    }
+
+    .news-item img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .news-content a {
+        font-size: 16px;
+    }
+
+    .holder-card h3 {
+        font-size: 20px;
+    }
+
+    .btc-amount {
+        font-size: 16px;
+    }
+
+    .holder-card p {
+        font-size: 14px;
     }
 
     .btc-price-container {
-        min-height: 60vh; /* Keeps it centered on smaller screens */
+        padding: 20px;
+    }
+
+    .btc-price-label {
+        font-size: 16px;
     }
 
     .btc-price-display {
-        font-size: 36px; /* Slightly smaller on mobile */
+        font-size: 36px;
     }
 }
 
+@media only screen and (min-width: 768px) {
+    .holders-list {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .btc-price-container {
+        min-height: 40vh;
+    }
+}

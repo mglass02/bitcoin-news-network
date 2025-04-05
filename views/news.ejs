@@ -1,18 +1,26 @@
-<!-- views/news.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BNN - Bitcoin News</title>
+    <title>BNN - Bitcoin News Network</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
-    <header><h1>BNN</h1></header>
+    <header>
+        <div class="header-container">
+            <h1 class="bnn-logo">BNN</h1>
+            <p class="tagline">Your Trusted Source for Bitcoin News</p>
+            <a href="/subscribe" class="subscribe-btn">Subscribe for £1.99/month</a>
+        </div>
+    </header>
     <main>
-        <h2>Bitcoin News</h2>
-        <p>Get the full story by clicking on the report.</p>
+        <section class="intro-section">
+            <h2>Bitcoin News</h2>
+            <p>Stay informed with the latest Bitcoin updates. Subscribe to unlock full stories.</p>
+        </section>
         <section class="news-section">
             <h3>Bitcoin Legislation</h3>
             <ul id="legislation-news" class="news-list"></ul>
@@ -23,13 +31,13 @@
         </section>
     </main>
     <nav>
-        <a href="/news"><i data-feather="file-text"></i></a>
-        <a href="/"><i data-feather="home"></i></a>
-        <a href="/top-holders"><i data-feather="dollar-sign"></i></a>
+        <a href="/news" class="active"><i data-feather="file-text"></i><span>News</span></a>
+        <a href="/"><i data-feather="home"></i><span>Home</span></a>
+        <a href="/top-holders"><i data-feather="dollar-sign"></i><span>HODLers</span></a>
     </nav>
     <script>
         feather.replace();
-    
+
         async function fetchNews(query, elementId) {
             try {
                 const response = await fetch(`/api/news?q=${query}`);
@@ -38,7 +46,13 @@
                 newsList.innerHTML = "";
                 items.forEach(item => {
                     const listItem = document.createElement("li");
-                    listItem.innerHTML = `<a href="${item.link}" target="_blank">${item.title}</a>`;
+                    listItem.innerHTML = `
+                        <div class="news-item">
+                            <div class="news-content">
+                                <a href="${item.link}" target="_blank">${item.title}</a>
+                                <p class="subscribe-teaser">Subscribe to read the full story</p>
+                            </div>
+                        </div>`;
                     newsList.appendChild(listItem);
                 });
             } catch (error) {
@@ -46,17 +60,15 @@
                 document.getElementById(elementId).innerHTML = "<li>Failed to load news</li>";
             }
         }
-    
-        // Initial fetch
+
         fetchNews("bitcoin+legislation", "legislation-news");
         fetchNews("bitcoin+institutional+investment", "institutional-news");
-    
-        // Auto-update every 5 minutes
+
         setInterval(() => {
             fetchNews("bitcoin+legislation", "legislation-news");
             fetchNews("bitcoin+institutional+investment", "institutional-news");
             console.log("News refreshed at:", new Date().toLocaleTimeString());
-        }, 300000); // 300,000 ms = 5 minutes
+        }, 300000);
     </script>
 </body>
 </html>
