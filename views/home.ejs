@@ -14,7 +14,6 @@
         <div class="header-container">
             <h1 class="bnn-logo">BNN</h1>
             <p class="tagline">Your Trusted Source for Bitcoin News</p>
-            <a href="/subscribe" class="subscribe-btn">Subscribe for £1.99/month</a>
         </div>
     </header>
     <main>
@@ -24,8 +23,8 @@
         </section>
         <div class="btc-price-container">
             <p class="btc-price-label">Current Bitcoin Price</p>
-            <strong><p id="btc-price" class="btc-price-display">Loading...</p></strong>
-            <strong><p id="btc-change" class="btc-price-display">Loading...</p></strong>
+            <p id="btc-price" class="btc-price-display"><strong>Loading...</strong></p>
+            <p id="btc-change" class="btc-price-change"><strong>Loading...</strong></p>
         </div>
     </main>
     <nav>
@@ -33,6 +32,17 @@
         <a href="/" class="active"><i data-feather="home"></i><span>Home</span></a>
         <a href="/top-holders"><i data-feather="dollar-sign"></i><span>HODLers</span></a>
     </nav>
+    <footer>
+        <div class="footer-container">
+            <p>© 2025 Bitcoin News Network. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+            </div>
+        </div>
+      </footer>
     <script>
         feather.replace();
     </script>
