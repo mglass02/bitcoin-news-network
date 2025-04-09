@@ -86,9 +86,10 @@ app.get('/news', (req, res) => {
 app.get('/top-holders', async (req, res) => {
   let holders = topHoldersCache;
 
-  // If cache is empty, fetch the top holders immediately before rendering
-  if (holders.length === 0) {
+  // Always try to get fresh data if cache is empty
+  if (!holders || holders.length === 0) {
     holders = await fetchTopHolders();
+    topHoldersCache = holders; // Update cache
   }
 
   res.render('top-holders', { holders });
