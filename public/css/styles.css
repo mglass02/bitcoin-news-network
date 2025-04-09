@@ -144,7 +144,7 @@ main {
 
 .news-section h3 {
     font-family: "Montserrat", sans-serif;
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 700;
     color: #FFAA33;
     margin-bottom: 25px;
@@ -153,7 +153,7 @@ main {
 .news-list {
     list-style-type: none;
     padding: 0;
-    max-height: 450px;
+    max-height: 400px;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: #FFAA33 #333;
@@ -201,7 +201,8 @@ main {
 }
 
 .news-content {
-    text-align: left;
+    text-align: center;
+    font-size: x-small;
     flex: 1;
 }
 
@@ -505,7 +506,7 @@ footer {
     }
 
     .news-content a {
-        font-size: 18px;
+        font-size: 10px;
     }
 
     .holder-card h3 {

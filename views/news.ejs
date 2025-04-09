@@ -18,7 +18,6 @@
     <main>
         <section class="intro-section">
             <h2>Bitcoin News</h2>
-            <p>Stay informed with the latest Bitcoin updates. Subscribe to unlock full stories.</p>
         </section>
         <section class="news-section">
             <h3>Bitcoin Legislation</h3>
@@ -55,12 +54,12 @@
                 const newsList = document.getElementById(elementId);
                 newsList.innerHTML = "";
                 items.forEach(item => {
+                    const articleUrl = item.link || "/";
                     const listItem = document.createElement("li");
                     listItem.innerHTML = `
                         <div class="news-item">
                             <div class="news-content">
-                                <a href="/subscribe" target="_blank">${item.title}</a>
-                                <p class="subscribe-teaser">Subscribe to read the full story</p>
+                                <a href="${articleUrl}" target="_blank">${item.title}</a>
                             </div>
                         </div>`;
                     newsList.appendChild(listItem);
